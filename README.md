@@ -27,7 +27,7 @@ The code (except for heap godown implementation) is partially taken from https:/
 
 `heap_3`: test OOM error due to stack-heap overlap
 # Future improvements
-1. **Optimize memory allocation**: In the current implementation, the size of vma is not reduced even when all of its allocated regions are freed. Further versions can modify this so that the stack (heap) size is reduced when its top-most (bottom-most) region is freed.
+1. **Optimize memory allocation**: In the current implementation, the size of vma is not reduced even when all of its allocated regions are freed. Further versions can modify this so that the stack/heap size is reduced when its top-most  page is freed (check `heap_4` for an example)
 2. **Dirty bit**: Currently, modifying a page does not change its corresponding dirty bit in PTE. Further versions can implement this functionality to reduce page replacement time.
 ----
 Note: Default page replacement policy is **FIFO**. To use **LRU** instead, make sure it is defined in `os-cfg.h`: `#define LRU`
